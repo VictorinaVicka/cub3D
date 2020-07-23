@@ -6,7 +6,7 @@
 /*   By: tfarenga <tfarenga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/22 14:48:40 by tfarenga          #+#    #+#             */
-/*   Updated: 2020/07/22 17:45:38 by tfarenga         ###   ########.fr       */
+/*   Updated: 2020/07/23 16:19:48 by tfarenga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ void	ft_horizontal(t_mlx *vars, float angle)
 		ray.y_off = 32;
 		ray.x_off = ray.y_off / tan(angle);
 	}
-	horizontal_ray_wall(vars, &ray);
+	ft_horizontal_wall(vars, &ray);
 }
 
 void	ft_column(t_mlx *vars, float angle, int c)

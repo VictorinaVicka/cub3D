@@ -6,7 +6,7 @@
 /*   By: tfarenga <tfarenga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/23 13:13:05 by tfarenga          #+#    #+#             */
-/*   Updated: 2020/07/23 13:13:07 by tfarenga         ###   ########.fr       */
+/*   Updated: 2020/07/23 18:17:35 by tfarenga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ char    **ft_map(int fd)
 {
     char    *line;
     char    **map;
-    int        resu;
+    int     resu;
 
     if (!(map = (char **)malloc(sizeof(char *))))
         return (NULL);

@@ -6,7 +6,7 @@
 /*   By: tfarenga <tfarenga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/23 13:12:36 by tfarenga          #+#    #+#             */
-/*   Updated: 2020/07/23 13:12:39 by tfarenga         ###   ########.fr       */
+/*   Updated: 2020/07/23 18:20:08 by tfarenga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int        ft_error(char type)
     if (type == 'b')
         ft_putstr_fd("Allocation problem!\n", 1);
     if (type == 'c')
-        ft_putstr_fd("Incorrect file sequenceю.\n", 1);
+        ft_putstr_fd("Incorrect file sequenc.\n", 1);
     if (type == 'd')
         ft_putstr_fd("Bad map format.\n", 1);
     if (type == 'e')
@@ -41,7 +41,7 @@ void    ft_free(char **arr)
     free(arr);
 }
 
-void            ft_free_txt(t_map *texture)
+void            ft_free_txt(t_txt *texture)
 {
     free(texture->west);
     free(texture->east);
@@ -51,11 +51,11 @@ void            ft_free_txt(t_map *texture)
     free(texture);
 }
 
-int    ft_free_conf(t_map *map, char *line, char **pars)
+int    ft_free_conf(t_txt *txt, t_param *param, char *line, char **pars)
 {
     free(line);
     ft_free(pars);
-    ft_free_txt(map);
-    free(map);
+    ft_free_txt(txt);
+    free(param);
     return (-1);
 }

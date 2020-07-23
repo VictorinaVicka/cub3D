@@ -6,7 +6,7 @@
 /*   By: tfarenga <tfarenga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/22 11:54:17 by tfarenga          #+#    #+#             */
-/*   Updated: 2020/07/22 11:56:01 by tfarenga         ###   ########.fr       */
+/*   Updated: 2020/07/23 16:31:03 by tfarenga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	ft_coordinat(char **map, char *s, int *x, int *y)
 		j = 0;
 		while (map[i][j])
 		{
-			if (ft_choice(map[i][j], s) == 1)
+			if (ft_choice(s, map[i][j]) == 1)
 			{
 				*x = j;
 				*y = i;

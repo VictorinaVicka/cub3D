@@ -6,14 +6,14 @@
 /*   By: tfarenga <tfarenga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/22 11:30:24 by tfarenga          #+#    #+#             */
-/*   Updated: 2020/07/23 13:35:42 by tfarenga         ###   ########.fr       */
+/*   Updated: 2020/07/23 18:16:43 by tfarenga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header_file/cub3d.h"
 
 
-t_base	*ft_init_bade(t_map param)
+t_base	*ft_init_base(t_param param)
 {
 	t_base	*base;
 
@@ -32,7 +32,7 @@ t_play	*ft_init_play(char **map)
 
 	if (!(play = malloc(sizeof(t_play))))
 		return (NULL);
-	if (ft_choice_mass(map, "WENS\0") == 0)
+	if (ft_choice_mass("WENS\0", map) == 0)
 	{
 		ft_coordinat(map, "WENS\0", &x, &y);
 		play->x = x * 32 + 16;
@@ -51,7 +51,7 @@ t_play	*ft_init_play(char **map)
 	return (play);
 }
 
-t_mlx		*ft_init_mlx(char **map, t_map par)
+t_mlx		*ft_init_mlx(char **map, t_param par)
 {
 	t_mlx	*mlx;
 
@@ -70,21 +70,21 @@ t_img		*ft_init_txt_next(t_mlx *mlx, char *txt)
 	if (!(img = malloc(sizeof(t_img))))
 	{
 		free(img);
-		return (error('b') ? NULL : NULL);
+		return (ft_error('b') ? NULL : NULL);
 	}
 	if (!(img->img_a = mlx_xpm_file_to_image(mlx->base->mlx,
 		txt, &img->width, &img->height)))
 	{
 		free(img->img_a);
 		free(img);
-		return (error('e') ? NULL : NULL);
+		return (ft_error('e') ? NULL : NULL);
 	}
 	img->img_b = mlx_get_data_addr(img->img_a,
 						&img->b, &img->line, &img->ed);
 	return (img);
 }
 
-int			ft_init_txt(t_mlx *mlx, t_map *txt)
+int			ft_init_txt(t_mlx *mlx, t_txt *txt)
 {
 	int i;
 

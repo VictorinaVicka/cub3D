@@ -6,7 +6,7 @@
 /*   By: tfarenga <tfarenga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/23 13:13:15 by tfarenga          #+#    #+#             */
-/*   Updated: 2020/07/23 13:28:08 by tfarenga         ###   ########.fr       */
+/*   Updated: 2020/07/23 18:02:38 by tfarenga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int        ft_number(char **list)
     return (1);
 }
 
-int        ft_ceilling(char **list, t_map *param, int len)
+int        ft_ceilling(char **list, t_param *param, int len)
 {
     char    **color;
     size_t    green;
@@ -69,7 +69,7 @@ int        ft_ceilling(char **list, t_map *param, int len)
     return (param->ceilling[1] != -1 ? 1 : -2);
 }
 
-int        ft_floor(char **list, t_map *param, int len)
+int        ft_floor(char **list, t_param *param, int len)
 {
     char    **color;
     size_t    green;
@@ -96,9 +96,9 @@ int        ft_floor(char **list, t_map *param, int len)
     return (param->floor[1] != -1 ? 1 : -2);
 }
 
-int    ft_textur(char **list, t_map *textur, char *flag)
+int    ft_textur(char **list, t_txt *textur, char *flag)
 {
-    if (ft_len(list) == 2 && *flag != 'e' && *flag != 'h')
+    if (ft_len(list) == 2 && *flag != 'e' && *flag != 'b')
     {
         if (!(ft_strncmp(list[0], "WE\0", 3)) && !(textur->west))
             textur->west = ft_strdup(list[1]);
@@ -116,6 +116,6 @@ int    ft_textur(char **list, t_map *textur, char *flag)
     else
         return (-1);
     if (textur->west && textur->east && textur->north && textur->south && textur->str)
-        *flag = (*flag == 'k' ? 'h' : 'e');
+        *flag = (*flag == 'p' ? 'b' : 'e');
     return (1);
 }

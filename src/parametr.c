@@ -6,13 +6,13 @@
 /*   By: tfarenga <tfarenga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/23 13:12:56 by tfarenga          #+#    #+#             */
-/*   Updated: 2020/07/23 13:42:08 by tfarenga         ###   ########.fr       */
+/*   Updated: 2020/07/23 18:21:54 by tfarenga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header_file/cub3d.h"
 
-int        ft_resol(char **list, t_map *param, int len)
+int        ft_resol(char **list, t_param *param, int len)
 {
     int        x;
     int        y;
@@ -41,7 +41,7 @@ int        ft_resol(char **list, t_map *param, int len)
         return (-2);
 }
 
-int    ft_param(char **list, t_map *param, char *flag)
+int    ft_param(char **list, t_param *param, char *flag)
 {
     int floor;
     int ceilling;
@@ -55,31 +55,31 @@ int    ft_param(char **list, t_map *param, char *flag)
             if ((ceilling = ft_ceilling(list, param, len)) == -2)
                 return (-1);
     if (param->res[0] && param->floor[0] && param->ceilling[0])
-        *flag = (*flag == 'e' ? 'h' : 'k');
+        *flag = (*flag == 'e' ? 'b' : 'p');
     return (1);
 }
 
-int        ft_conf(int fd, t_map *map)
+int        ft_conf(int fd, t_txt *txt, t_param *param)
 {
     char    *line;
     char    **pars;
     char    flag;
 
     flag = 0;
-    while (flag != 8 && get_next_line(fd, &line) > 0)
+    while (flag != 'b' && get_next_line(fd, &line) > 0)
     {
         pars = ft_split(line, ' ');
         if (line[0] != '\0')
-            if (ft_param(pars, map, &flag) < 0)
-                // if (ft_textur(pars, txt, &flag) < 0)
-                    return (ft_free_conf(map, line, pars));
+            if (ft_param(pars, param, &flag) < 0)
+                if (ft_textur(pars, txt, &flag) < 0)
+                    return (ft_free_conf(txt, param, line, pars));
         ft_free(pars);
         free(line);
     }
-    if (flag != 'h')
+    if (flag != 'b')
     {
-        free(map);
-        ft_free_txt(map);
+        free(param);
+        ft_free_txt(txt);
         return (-1);
     }
     return (1);

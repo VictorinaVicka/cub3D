@@ -6,7 +6,7 @@
 /*   By: tfarenga <tfarenga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/22 11:20:46 by tfarenga          #+#    #+#             */
-/*   Updated: 2020/07/22 11:23:42 by tfarenga         ###   ########.fr       */
+/*   Updated: 2020/07/23 18:08:48 by tfarenga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,10 @@ void	ft_free_img(t_mlx *mlx)
 }
 
 
-void	ft_exit(t_map *m, char **map, char excode)
+void	ft_exit(t_txt *txt, t_param *param, char **map, char excode)
 {
-	ft_free_txt(m);
-	free(m);
+	ft_free_txt(txt);
+	free(param);
 	ft_free(map);
 	ft_error(excode);
 	exit(0);

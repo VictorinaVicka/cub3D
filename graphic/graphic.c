@@ -6,7 +6,7 @@
 /*   By: tfarenga <tfarenga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/22 10:34:30 by tfarenga          #+#    #+#             */
-/*   Updated: 2020/07/23 12:29:11 by tfarenga         ###   ########.fr       */
+/*   Updated: 2020/07/23 18:15:26 by tfarenga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,50 +31,50 @@ void	ft_create_mlx(t_mlx *mlx)
 											&mlx->base->endian);
 }
 
-t_mlx	*ft_init_go(t_map *m, char **map)
+t_mlx	*ft_init_go(t_txt *txt, t_param *param, char **map)
 {
 	t_mlx	*mlx;
 
+	if (!(mlx = ft_init_mlx(map, *param)))
+		ft_exit(txt, param, map, 'b');
 	if (!(mlx->sprite = ft_init_sprit(mlx)))
 	{
 		free(mlx->base);
 		free(mlx->play);
 		free(mlx);
-		ft_exit(m, map, 'b');
+		ft_exit(txt, param, map, 'b');
 	}
-	if (!(mlx->base = ft_init_bade(*m)))
+	if (!(mlx->base = ft_init_base(*param)))
 	{
 		free(mlx);
-		ft_exit(m, map, 'b');
+		ft_exit(txt, param, map, 'b');
 	}
-	if (!(mlx = ft_init_mlx(map, *m)))
-		ft_exit(m, map, 'b');
 	if (!(mlx->play = ft_init_play(map)))
 	{
 		free(mlx->base);
 		free(mlx);
-		ft_exit(m, map, 'b');
+		ft_exit(txt, param, map, 'b');
 	}
 	return (mlx);
 }
 
-int	ft_graphic(t_map *m, char **map, int scren)
+int	ft_graphic(t_txt *txt, t_param *param, char **map, int scren)
 {
 	t_mlx	*mlx;
 
-	mlx = ft_init_go(m, map);
+	mlx = ft_init_go(txt, param, map);
 	ft_create_mlx(mlx);
-	if (!(ft_init_txt(mlx, m)))
+	if (!(ft_init_txt(mlx, txt)))
 	{
 		free(mlx->play);
 		ft_free_img2(mlx);
 		free(mlx->sprite);
 		free(mlx);
-		ft_exit(m, map, 0);
+		ft_exit(txt, param, map, 0);
 	}
 	ft_line(mlx);
-	ft_free_txt(m);
-	free(m);
+	ft_free_txt(txt);
+	free(param);
 	if (scren)
 		ft_scren(mlx);
 	mlx_hook(mlx->base->win, 17, 1L << 17, ft_end_window, mlx);

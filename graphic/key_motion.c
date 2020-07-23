@@ -6,7 +6,7 @@
 /*   By: tfarenga <tfarenga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/22 14:07:49 by tfarenga          #+#    #+#             */
-/*   Updated: 2020/07/23 11:20:14 by tfarenga         ###   ########.fr       */
+/*   Updated: 2020/07/23 16:21:29 by tfarenga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_rotate(t_mlx *vars, char line)
 {
-	if (line == 'left')
+	if (line == 'l')
 	{
 		vars->play->angle -= 0.1;
 		if (vars->play->angle < 0)
@@ -32,7 +32,7 @@ void	ft_move_r_l(t_mlx *vars, char line)
 {
 	vars->play->px = -vars->play->sin * 5;
 	vars->play->py = vars->play->cos * 5;
-	if (line == 'right')
+	if (line == 'r')
 	{
 		if (vars->map[(int)(vars->play->y + vars->play->py) / 32]
 			[(int)(vars->play->x + vars->play->px) / 32] != '1')
@@ -56,7 +56,7 @@ void	ft_move_d_u(t_mlx *vars, char line)
 {
 	vars->play->px = vars->play->cos * 5;
 	vars->play->py = vars->play->sin * 5;
-	if (line == 'up')
+	if (line == 'u')
 	{
 		if (vars->map[(int)(vars->play->y + vars->play->py) / 32]
 			[(int)(vars->play->x + vars->play->px) / 32] != '1')
@@ -109,17 +109,17 @@ int		ft_key(int keycode, t_mlx *vars)
 	if (keycode == 53)
 		ft_game_end(vars);
 	if (keycode == 123)
-		ft_rotate(vars, 'left');
+		ft_rotate(vars, 'l');
 	if (keycode == 124)
-		ft_rotate(vars, 'right');
+		ft_rotate(vars, 'r');
 	if (keycode == 0)
-		ft_move_r_l(vars, 'left');
+		ft_move_r_l(vars, 'l');
 	if (keycode == 1)
-		ft_move_d_u(vars, 'down');
+		ft_move_d_u(vars, 'd');
 	if (keycode == 2)
-		ft_move_r_l(vars, 'right');
+		ft_move_r_l(vars, 'r');
 	if (keycode == 13)
-		ft_move_d_u(vars, 'up');
+		ft_move_d_u(vars, 'u');
 	ft_line(vars);
 	return (1);
 }
