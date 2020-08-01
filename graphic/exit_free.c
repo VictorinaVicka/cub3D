@@ -6,7 +6,7 @@
 /*   By: tfarenga <tfarenga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/22 11:20:46 by tfarenga          #+#    #+#             */
-/*   Updated: 2020/07/31 15:15:04 by tfarenga         ###   ########.fr       */
+/*   Updated: 2020/08/01 18:34:19 by tfarenga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ void	ft_free_img(t_mlx *mlx)
 	}
 	free(mlx->img);
 }
-
 
 void	ft_exit(t_txt *txt, t_param *param, char **map, char excode)
 {

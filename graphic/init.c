@@ -6,12 +6,11 @@
 /*   By: tfarenga <tfarenga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/22 11:30:24 by tfarenga          #+#    #+#             */
-/*   Updated: 2020/08/01 17:19:59 by tfarenga         ###   ########.fr       */
+/*   Updated: 2020/08/01 18:34:45 by tfarenga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header_file/cub3d.h"
-
 
 t_base	*ft_init_base(t_param param)
 {

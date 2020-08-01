@@ -6,7 +6,7 @@
 /*   By: tfarenga <tfarenga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/22 14:48:40 by tfarenga          #+#    #+#             */
-/*   Updated: 2020/08/01 17:18:21 by tfarenga         ###   ########.fr       */
+/*   Updated: 2020/08/01 18:35:18 by tfarenga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	ft_vertical_wall(t_mlx *vars, t_ray *ray)
 	vars->v_ray[1] = ray->x;
 	vars->v_ray[2] = ray->y;
 }
-
 
 void	ft_vertical(t_mlx *vars, float angle)
 {

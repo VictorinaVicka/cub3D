@@ -6,7 +6,7 @@
 /*   By: tfarenga <tfarenga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/22 12:28:28 by tfarenga          #+#    #+#             */
-/*   Updated: 2020/08/01 17:14:41 by tfarenga         ###   ########.fr       */
+/*   Updated: 2020/08/01 18:38:33 by tfarenga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,6 @@ void		ft_select_spr(t_mlx *vars)
 	}
 	ft_select_spr_next(vars, str);
 }
-
 
 t_sprite2	*ft_init_sprit(t_mlx *mlx)
 {
