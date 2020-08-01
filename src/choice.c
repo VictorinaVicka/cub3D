@@ -6,13 +6,13 @@
 /*   By: tfarenga <tfarenga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/23 13:12:24 by tfarenga          #+#    #+#             */
-/*   Updated: 2020/07/23 13:12:27 by tfarenga         ###   ########.fr       */
+/*   Updated: 2020/07/31 17:04:05 by tfarenga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header_file/cub3d.h"
 
-int    ft_choice(char *str, char c)
+int    ft_choice(char c, char *str)
 {
     int i;
 
@@ -26,7 +26,7 @@ int    ft_choice(char *str, char c)
     return (0);
 }
 
-int    ft_choice_mass(char *set, char **map)
+int    ft_choice_mass(char **map, char *set)
 {
     int i;
     int j;
@@ -38,7 +38,7 @@ int    ft_choice_mass(char *set, char **map)
         j = 0;
         while (map[i][j])
         {
-            if (ft_choice(set, map[i][j]) == 0)
+            if (ft_choice(map[i][j], set) == 0)
                 return (0);
             j++;
         }

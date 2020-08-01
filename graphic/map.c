@@ -6,7 +6,7 @@
 /*   By: tfarenga <tfarenga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/22 14:48:40 by tfarenga          #+#    #+#             */
-/*   Updated: 2020/07/23 16:19:48 by tfarenga         ###   ########.fr       */
+/*   Updated: 2020/08/01 17:18:21 by tfarenga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	ft_vertical_wall(t_mlx *vars, t_ray *ray)
 {
 	ray->map_x = (int)((ray->x < 0 ? 0 : ray->x) / 32);
 	ray->map_y = (int)((ray->y < 0 ? 0 : ray->y) / 32);
-	while (ray->x > 0 && ray->y > 0 && ray->y < ft_len_m(vars->map) * 32)
+	while (ray->x > 0 && ray->y > 0 && ray->y < ft_len(vars->map) * 32)
 	{
 		ray->map_x = (int)(ray->x / 32);
 		ray->map_y = (int)(ray->y / 32);
@@ -64,7 +64,7 @@ void	ft_horizontal_wall(t_mlx *vars, t_ray *ray)
 	ray->map_y = (int)(ray->y / 32);
 	while (ray->x >= 0 && ray->y >= 0 && ray->x <
 			ft_strlen(vars->map[ray->map_y]) * 32 &&
-			ray->y < ft_len_m(vars->map) * 32)
+			ray->y < ft_len(vars->map) * 32)
 	{
 		ray->map_x = (int)(ray->x / 32);
 		ray->map_y = (int)(ray->y / 32);
@@ -88,18 +88,18 @@ void	ft_horizontal(t_mlx *vars, float angle)
 		ray.x = vars->play->x;
 		ray.y = vars->play->y;
 	}
-	if (angle > PI)
-	{
-		ray.y = (int)(vars->play->y / 32) * 32 - 0.001;
-		ray.x = vars->play->x + (ray.y - vars->play->y) / tan(angle);
-		ray.y_off = -32;
-		ray.x_off = ray.y_off / tan(angle);
-	}
 	if (angle < PI)
 	{
 		ray.y = (int)(vars->play->y / 32) * 32 + 32;
 		ray.x = vars->play->x + (ray.y - vars->play->y) / tan(angle);
 		ray.y_off = 32;
+		ray.x_off = ray.y_off / tan(angle);
+	}
+	if (angle > PI)
+	{
+		ray.y = (int)(vars->play->y / 32) * 32 - 0.001;
+		ray.x = vars->play->x + (ray.y - vars->play->y) / tan(angle);
+		ray.y_off = -32;
 		ray.x_off = ray.y_off / tan(angle);
 	}
 	ft_horizontal_wall(vars, &ray);

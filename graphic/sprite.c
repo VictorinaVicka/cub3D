@@ -6,7 +6,7 @@
 /*   By: tfarenga <tfarenga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/22 12:28:28 by tfarenga          #+#    #+#             */
-/*   Updated: 2020/07/23 11:13:04 by tfarenga         ###   ########.fr       */
+/*   Updated: 2020/08/01 17:14:41 by tfarenga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void		ft_count_sprite(t_mlx *mlx)
 	}
 }
 
-void	ft_select_spr_next(t_mlx *vars, float *str)
+void		ft_select_spr_next(t_mlx *vars, float *str)
 {
 	float	dst;
 	int		ordr;
@@ -56,7 +56,7 @@ void	ft_select_spr_next(t_mlx *vars, float *str)
 	}
 }
 
-void	ft_select_spr(t_mlx *vars)
+void		ft_select_spr(t_mlx *vars)
 {
 	float	str[vars->count_s];
 	int		i;
@@ -69,30 +69,30 @@ void	ft_select_spr(t_mlx *vars)
 	}
 	while (i < vars->count_s)
 	{
-		str[i] = ((vars->play->x - vars->sprite[i].s_x) *
-				(vars->play->x - vars->sprite[i].s_x)) +
-				((vars->play->y - vars->sprite[i].s_y) *
-				(vars->play->y - vars->sprite[i].s_y));
+		str[i] = ((vars->play->x - vars->sprite2[i].s_x) *
+				(vars->play->x - vars->sprite2[i].s_x)) +
+				((vars->play->y - vars->sprite2[i].s_y) *
+				(vars->play->y - vars->sprite2[i].s_y));
 		vars->order_s[i] = i;
-		vars->sprite[i].dist = sqrtf(str[i]);
+		vars->sprite2[i].dist = sqrtf(str[i]);
 		i++;
 	}
 	ft_select_spr_next(vars, str);
 }
 
 
-t_sprite	*ft_init_sprit(t_mlx *mlx)
+t_sprite2	*ft_init_sprit(t_mlx *mlx)
 {
-	t_sprite	*sprite;
+	t_sprite2	*sprite;
 	int			count;
 	int			i;
 	int			j;
 
 	ft_count_sprite(mlx);
-	if (!(sprite = malloc(sizeof(t_sprite) * mlx->count_s)))
+	if (!(sprite = malloc(sizeof(t_sprite2) * mlx->count_s)))
 		return (NULL);
-	count = 0;
 	i = -1;
+	count = 0;
 	while (mlx->map[++i] != NULL)
 	{
 		j = -1;

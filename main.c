@@ -6,13 +6,13 @@
 /*   By: tfarenga <tfarenga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/20 12:36:35 by tfarenga          #+#    #+#             */
-/*   Updated: 2020/07/23 18:18:30 by tfarenga         ###   ########.fr       */
+/*   Updated: 2020/08/01 17:01:35 by tfarenga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header_file/cub3d.h"
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	int		screen;
 	char	**card;
@@ -27,14 +27,13 @@ int main(int argc, char **argv)
 		return (argc > 3 ? ft_error('g') : ft_error('f'));
 	if (argc == 3 && ft_strncmp(argv[2], "--save\0", 7) == 0)
 		screen = 1;
-	txt = ft_init();
-	if (!(param= ft_init_param()))
+	if (!(txt = ft_init()) || !(param = ft_init_param()))
 		return (ft_error('b'));
 	if (ft_conf(fd, txt, param) < 0)
 		return (ft_error('c'));
 	if (!(card = ft_map(fd)))
 		return (ft_error('d'));
 	close(fd);
-	if (!(ft_graphic(txt, param, card, screen)))
-		return (ft_error('b'));
+	ft_graphic(txt, param, card, screen);
+	return (0);
 }

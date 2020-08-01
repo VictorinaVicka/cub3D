@@ -6,13 +6,13 @@
 /*   By: tfarenga <tfarenga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/22 10:34:30 by tfarenga          #+#    #+#             */
-/*   Updated: 2020/07/23 18:15:26 by tfarenga         ###   ########.fr       */
+/*   Updated: 2020/08/01 17:20:48 by tfarenga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header_file/cub3d.h"
 
-int	ft_window(t_mlx *vars)
+int		ft_window(t_mlx *vars)
 {
 	mlx_hook(vars->base->win, 2, 1L << 0, ft_key, vars);
 	return (0);
@@ -22,7 +22,7 @@ void	ft_create_mlx(t_mlx *mlx)
 {
 	mlx->base->mlx = mlx_init();
 	mlx->base->win = mlx_new_window(mlx->base->mlx, mlx->base->x,
-											mlx->base->y, "CUB3D");
+											mlx->base->y, "GAME");
 	mlx->base->img = mlx_new_image(mlx->base->mlx, mlx->base->x,
 											mlx->base->y);
 	mlx->base->addr = mlx_get_data_addr(mlx->base->img,
@@ -37,10 +37,9 @@ t_mlx	*ft_init_go(t_txt *txt, t_param *param, char **map)
 
 	if (!(mlx = ft_init_mlx(map, *param)))
 		ft_exit(txt, param, map, 'b');
-	if (!(mlx->sprite = ft_init_sprit(mlx)))
+	if (!(mlx->play = ft_init_play(map)))
 	{
 		free(mlx->base);
-		free(mlx->play);
 		free(mlx);
 		ft_exit(txt, param, map, 'b');
 	}
@@ -49,8 +48,9 @@ t_mlx	*ft_init_go(t_txt *txt, t_param *param, char **map)
 		free(mlx);
 		ft_exit(txt, param, map, 'b');
 	}
-	if (!(mlx->play = ft_init_play(map)))
+	if (!(mlx->sprite2 = ft_init_sprit(mlx)))
 	{
+		free(mlx->play);
 		free(mlx->base);
 		free(mlx);
 		ft_exit(txt, param, map, 'b');
@@ -58,7 +58,7 @@ t_mlx	*ft_init_go(t_txt *txt, t_param *param, char **map)
 	return (mlx);
 }
 
-int	ft_graphic(t_txt *txt, t_param *param, char **map, int scren)
+int		ft_graphic(t_txt *txt, t_param *param, char **map, int scren)
 {
 	t_mlx	*mlx;
 
@@ -68,7 +68,7 @@ int	ft_graphic(t_txt *txt, t_param *param, char **map, int scren)
 	{
 		free(mlx->play);
 		ft_free_img2(mlx);
-		free(mlx->sprite);
+		free(mlx->sprite2);
 		free(mlx);
 		ft_exit(txt, param, map, 0);
 	}

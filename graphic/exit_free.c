@@ -6,7 +6,7 @@
 /*   By: tfarenga <tfarenga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/22 11:20:46 by tfarenga          #+#    #+#             */
-/*   Updated: 2020/07/23 18:08:48 by tfarenga         ###   ########.fr       */
+/*   Updated: 2020/07/31 15:15:04 by tfarenga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	ft_game_end(t_mlx *mlx)
 	ft_free_base(mlx);
 	ft_free_img(mlx);
 	ft_free(mlx->map);
-	free(mlx->sprite);
+	free(mlx->sprite2);
 	free(mlx);
 	exit(0);
 }

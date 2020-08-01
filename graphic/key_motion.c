@@ -6,7 +6,7 @@
 /*   By: tfarenga <tfarenga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/22 14:07:49 by tfarenga          #+#    #+#             */
-/*   Updated: 2020/07/23 16:21:29 by tfarenga         ###   ########.fr       */
+/*   Updated: 2020/07/31 17:35:21 by tfarenga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,8 @@ void	ft_line(t_mlx *vars)
 	int				i;
 
 	i = 0;
-	vars->play->sin = sin(vars->play->angle);
 	vars->play->cos = cos(vars->play->angle);
+	vars->play->sin = sin(vars->play->angle);
 	angle_line = vars->play->angle - PI / 6;
 	angle_line = (angle_line < 0 ? angle_line + 2 * PI : angle_line);
 	angle_line = (angle_line > 2 * PI ? angle_line - 2 * PI : angle_line);

@@ -6,7 +6,7 @@
 /*   By: tfarenga <tfarenga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/23 15:12:44 by tfarenga          #+#    #+#             */
-/*   Updated: 2020/07/23 18:18:01 by tfarenga         ###   ########.fr       */
+/*   Updated: 2020/08/01 17:22:31 by tfarenga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,6 @@ typedef struct	s_base {
 	void		*mlx;
 	void		*win;
 	char 		*addr;
-	void		*bmp;
-	int			fd;
 	int			bits_per_pixel;
 	int			line_length;
 	int			endian;
@@ -64,12 +62,16 @@ typedef struct	s_play {
 	float		cos;
 }				t_play;
 
-typedef struct	s_sprite {
+typedef struct s_spite2 {
 	int			x;
 	int			y;
 	int			s_x;
 	int			s_y;
 	float		dist;
+}				t_sprite2;
+
+
+typedef struct	s_sprite {
 	float		height;
 	float		width;
 	int			y_str;
@@ -108,7 +110,7 @@ typedef struct	s_mlx {
 	t_img		**img;
 	t_base		*base;
 	t_play		*play;
-	t_sprite	*sprite;
+	t_sprite2	*sprite2;
 	char		**map;
 	int			floor;
 	float		p;
@@ -122,11 +124,11 @@ typedef struct	s_mlx {
 }				t_mlx;
 
 typedef struct	s_txt {
-	char		*west;
-	char		*east;
 	char		*north;
 	char		*south;
-	char		*str;
+	char		*west;
+	char		*east;
+	char		*spr;
 }				t_txt;
 
 typedef struct s_param {
@@ -145,12 +147,11 @@ t_txt    	*ft_init(void);
 t_param 	*ft_init_param(void);
 
 char		**ft_map(int fd);
-char		**ft_real_arr(char *line, char **map);
+char		**ft_real_arr(char **map, char *line);
 int			ft_full_map(char **map);
-int			ft_len_m(char **mass);
 int			ft_pos(char **map);
-int			ft_choice_mass(char *set, char **map);
-int			ft_choice(char *str, char c);
+int			ft_choice_mass(char **map, char *set);
+int			ft_choice(char c, char *str);
 int        	ft_conf(int fd, t_txt *txt, t_param *param);
 int			ft_textur(char **list, t_txt *textur, char *flag);
 int			ft_param(char **list, t_param *param, char *flag);
@@ -158,13 +159,12 @@ int			ft_resol(char **list, t_param *param, int len);
 int			ft_floor(char **list, t_param *param, int len);
 int			ft_ceilling(char **list, t_param *param, int len);
 int			ft_number(char **list);
-int			ft_create_colors(int green, int blue, int red);
+int			ft_create_colors(int g, int b, int r);
 int			ft_len(char **list);
-int    		ft_free_conf(t_txt *txt, t_param *param, char *line, char **pars);
+int    		ft_free_conf(char *line, char **pars, t_txt *txt, t_param *param);
 void		ft_free_txt(t_txt *texture);
 void		ft_free(char **arr);
 int			ft_error(char type);
-
 
 int			ft_graphic(t_txt *txt, t_param *param, char **map, int scren);
 t_mlx		*ft_init_go(t_txt *txt, t_param *param, char **map);
@@ -178,10 +178,9 @@ void		ft_game_end(t_mlx *mlx);
 t_mlx		*ft_init_mlx(char **map, t_param par);
 t_play		*ft_init_play(char **map);
 t_base		*ft_init_base(t_param param);
-t_sprite	*ft_init_sprit(t_mlx *mlx);
+t_sprite2	*ft_init_sprit(t_mlx *mlx);
 int			ft_init_txt(t_mlx *mlx, t_txt *txt);
 t_img		*ft_init_txt_next(t_mlx *mlx, char *txt);
-
 
 void		ft_count_sprite(t_mlx *mlx);
 void		ft_select_spr(t_mlx *vars);

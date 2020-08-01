@@ -6,7 +6,7 @@
 /*   By: tfarenga <tfarenga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/22 15:20:01 by tfarenga          #+#    #+#             */
-/*   Updated: 2020/07/22 15:43:22 by tfarenga         ###   ########.fr       */
+/*   Updated: 2020/08/01 17:15:46 by tfarenga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ float	ft_fish_cor(float length, float play_angle, float ray_angle)
 	float	cor_angle;
 
 	cor_angle = play_angle - ray_angle;
-	if (cor_angle < 0)
-		cor_angle += 2 * PI;
 	if (cor_angle > 2 * PI)
 		cor_angle -= 2 * PI;
+	if (cor_angle < 0)
+		cor_angle += 2 * PI;
 	return (length * cos(cor_angle));
 }

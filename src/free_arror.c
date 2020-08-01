@@ -6,13 +6,13 @@
 /*   By: tfarenga <tfarenga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/23 13:12:36 by tfarenga          #+#    #+#             */
-/*   Updated: 2020/07/23 18:20:08 by tfarenga         ###   ########.fr       */
+/*   Updated: 2020/08/01 17:13:42 by tfarenga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header_file/cub3d.h"
 
-int        ft_error(char type)
+int     ft_error(char type)
 {
     if (type == 'a')
         ft_putstr_fd("File not found.\n", 1);
@@ -41,17 +41,17 @@ void    ft_free(char **arr)
     free(arr);
 }
 
-void            ft_free_txt(t_txt *texture)
+void    ft_free_txt(t_txt *texture)
 {
-    free(texture->west);
-    free(texture->east);
     free(texture->north);
     free(texture->south);
-    free(texture->str);
+    free(texture->west);
+    free(texture->east);
+    free(texture->spr);
     free(texture);
 }
 
-int    ft_free_conf(t_txt *txt, t_param *param, char *line, char **pars)
+int    ft_free_conf(char *line, char **pars, t_txt *txt, t_param *param)
 {
     free(line);
     ft_free(pars);

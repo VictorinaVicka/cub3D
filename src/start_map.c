@@ -6,13 +6,13 @@
 /*   By: tfarenga <tfarenga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/23 13:13:05 by tfarenga          #+#    #+#             */
-/*   Updated: 2020/07/23 18:17:35 by tfarenga         ###   ########.fr       */
+/*   Updated: 2020/08/01 17:06:50 by tfarenga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header_file/cub3d.h"
 
-int        ft_pos(char **map)
+int     ft_pos(char **map)
 {
     int        i;
     int        j;
@@ -25,7 +25,7 @@ int        ft_pos(char **map)
         j = 0;
         while (map[i][j] != '\0')
         {
-            if (ft_choice("WENS\0", map[i][j]) == 1)
+            if (ft_choice(map[i][j], "SWNE\0") == 1)
                 pos++;
             j++;
         }
@@ -34,23 +34,13 @@ int        ft_pos(char **map)
     return (pos == 1 ? 1 : 0);
 }
 
-int    ft_len_m(char **mass)
-{
-    int i;
-
-    i = 0;
-    while (mass[i] != NULL)
-        i++;
-    return (i);
-}
-
-char    **ft_real_arr(char *line, char **map)
+char    **ft_real_arr(char **map, char *line)
 {
     char    **resu;
     int        i;
 
     i = 0;
-    if (!(resu = (char **)malloc(sizeof(char *) * (ft_len_m(map) + 2))))
+    if (!(resu = (char **)malloc(sizeof(char *) * (ft_len(map) + 2))))
         return (NULL);
     while (map[i] != NULL)
     {
@@ -70,20 +60,19 @@ char    **ft_map(int fd)
     char    **map;
     int     resu;
 
-    if (!(map = (char **)malloc(sizeof(char *))))
-        return (NULL);
+    map = (char **)malloc(sizeof(char *));
     map[0] = NULL;
     while ((resu = get_next_line(fd, &line)) > 0)
     {
         if (line[0] != '\0')
-            map = ft_real_arr(line, map);
+            map = ft_real_arr(map, line);
         free(line);
     }
     if (line[0] != '\0')
-        map = ft_real_arr(line, map);
+        map = ft_real_arr(map, line);
     free(line);
-    if (ft_full_map(map) == 1 && ft_pos(map) == 1
-    && ft_choice_mass(" 012WENS\0", map) != 0 && resu != -1)
+    if (ft_pos(map) == 1 && ft_full_map(map) == 1
+    && resu != -1 && ft_choice_mass(map, " 012SNWE\0") != 0)
         return (map);
     else
     {
@@ -92,7 +81,7 @@ char    **ft_map(int fd)
     }
 }
 
-int        ft_full_map(char **map)
+int     ft_full_map(char **map)
 {
     int        x;
     int        y;
@@ -104,15 +93,15 @@ int        ft_full_map(char **map)
         x = 0;
         while (map[y][x] != '\0')
         {
-            if (map[y][x] != ' ' && map[y][x] != '1')
+            if (map[y][x] != '1' && map[y][x] != ' ')
             {
                 if (y - 1 < 0
-                    || map[y + 1][x] == ' ' || x - 1 < 0
-                    || (int)ft_strlen(map[y + 1]) <= x
                     || (int)ft_strlen(map[y - 1]) <= x || map[y - 1][x] == ' '
+                    || (int)ft_strlen(map[y + 1]) <= x
                     || map[y][x - 1] == ' ' || x + 1 >= (int)ft_strlen(map[y])
-                    || y + 1 >= (int)ft_len_m(map) || map[y][x + 1] == ' ')
-                    return (0);
+					|| y + 1 >= (int)ft_len(map) || map[y][x + 1] == ' '
+					|| map[y + 1][x] == ' ' || x - 1 < 0)
+					return (0);
             }
             x++;
         }

@@ -6,7 +6,7 @@
 /*   By: tfarenga <tfarenga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/23 13:12:48 by tfarenga          #+#    #+#             */
-/*   Updated: 2020/07/23 17:50:53 by tfarenga         ###   ########.fr       */
+/*   Updated: 2020/08/01 17:13:17 by tfarenga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 int    ft_create_colors(int green, int blue, int red)
 {
-    if (green > MAX_COL || green < 0 || blue > MAX_COL
-                || blue < 0 || red > MAX_COL || red < 0)
+    if (green > 255 || green < 0 || blue > 255
+				|| blue < 0 || red > 255 || red < 0)
         return (-1);
-    return (red << 16 | green << 8 | blue);
+    return (green << 16 | blue << 8 | red);
 }
 
 
@@ -27,11 +27,11 @@ t_txt    *ft_init(void)
 
     if (!(txt = malloc(sizeof(t_txt))))
         return (NULL);
-    txt->west = NULL;
-    txt->east = NULL;
     txt->north = NULL;
     txt->south = NULL;
-    txt->str = NULL;
+    txt->west = NULL;
+    txt->east = NULL;
+    txt->spr = NULL;
     return (txt);
 }
 
@@ -47,7 +47,7 @@ t_param *ft_init_param(void)
     return (param);
 }
 
-int        ft_dot(char *file)
+int     ft_dot(char *file)
 {
     int len;
 

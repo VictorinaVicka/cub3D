@@ -6,20 +6,20 @@
 /*   By: tfarenga <tfarenga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/22 16:02:43 by tfarenga          #+#    #+#             */
-/*   Updated: 2020/07/22 17:41:10 by tfarenga         ###   ########.fr       */
+/*   Updated: 2020/08/01 17:16:51 by tfarenga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header_file/cub3d.h"
 
-void	ft_pixel_print(t_mlx *vars, int x_start, int y_start, int col)
+void	ft_pixel_print(t_mlx *vars, int x_str, int y_str, int col)
 {
 	char	*str;
 	int		x;
 	int		y;
 
-	x = x_start;
-	y = y_start;
+	x = x_str;
+	y = y_str;
 	str = vars->base->addr + (y * vars->base->line_length
 						+ x * (vars->base->bits_per_pixel / 8));
 	*(unsigned int *)str = col;
@@ -43,7 +43,7 @@ void	ft_paint_f_c(t_ray ray, t_mlx *vars)
 
 	print[0] = ray.ray;
 	print[1] = ray.off + ray.wall_he;
-	print[2] = vars->base->y - ray.off - ray.wall_he - 1;
+	print[2] = vars->base->y - 1 - ray.off - ray.wall_he;
 	ft_column_print(vars, print, vars->floor);
 	print[1] = 0;
 	print[2] = ray.off;
@@ -62,8 +62,7 @@ void	ft_walls_print(t_mlx *vars, float *print, float cor)
 	while (y < print[1] + print[2] && y < vars->base->y)
 	{
 		y_pix = (print[2] - vars->base->y) / 2 + y;
-		y_pix = y_pix / print[2]
-					* vars->img[vars->txt_index]->height;
+		y_pix = y_pix / print[2] * vars->img[vars->txt_index]->height;
 		color = ft_color_txt(vars, vars->txt_index, (int)x_pix, (int)y_pix);
 		ft_pixel_print(vars, print[0], y, color);
 		y++;

@@ -6,7 +6,7 @@
 /*   By: tfarenga <tfarenga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/22 11:30:24 by tfarenga          #+#    #+#             */
-/*   Updated: 2020/07/23 18:16:43 by tfarenga         ###   ########.fr       */
+/*   Updated: 2020/08/01 17:19:59 by tfarenga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,38 +32,38 @@ t_play	*ft_init_play(char **map)
 
 	if (!(play = malloc(sizeof(t_play))))
 		return (NULL);
-	if (ft_choice_mass("WENS\0", map) == 0)
+	if (ft_choice_mass(map, "SWNE\0") == 0)
 	{
-		ft_coordinat(map, "WENS\0", &x, &y);
+		ft_coordinat(map, "SWNE\0", &x, &y);
 		play->x = x * 32 + 16;
 		play->y = y * 32 + 16;
-		if (map[y][x] == 'W')
-			play->angle = PI;
+		if (map[y][x] == 'S')
+			play->angle = PI / 2;
 		else if (map[y][x] == 'E')
 			play->angle = 0;
-		else if (map[y][x] == 'N')
-			play->angle = 3 * PI / 2;
+		else if (map[y][x] == 'W')
+			play->angle = PI;
 		else
-			play->angle = PI / 2;
+			play->angle = 3 * PI / 2;
 	}
-	play->sin = sin(play->angle);
 	play->cos = cos(play->angle);
+	play->sin = sin(play->angle);
 	return (play);
 }
 
-t_mlx		*ft_init_mlx(char **map, t_param par)
+t_mlx	*ft_init_mlx(char **map, t_param par)
 {
 	t_mlx	*mlx;
 
 	if (!(mlx = malloc(sizeof(t_mlx))))
 		return (NULL);
 	mlx->map = map;
-	mlx->ceilling = par.ceilling[1];
 	mlx->floor = par.floor[1];
+	mlx->ceilling = par.ceilling[1];
 	return (mlx);
 }
 
-t_img		*ft_init_txt_next(t_mlx *mlx, char *txt)
+t_img	*ft_init_txt_next(t_mlx *mlx, char *txt)
 {
 	t_img		*img;
 
@@ -84,7 +84,7 @@ t_img		*ft_init_txt_next(t_mlx *mlx, char *txt)
 	return (img);
 }
 
-int			ft_init_txt(t_mlx *mlx, t_txt *txt)
+int		ft_init_txt(t_mlx *mlx, t_txt *txt)
 {
 	int i;
 
@@ -92,11 +92,11 @@ int			ft_init_txt(t_mlx *mlx, t_txt *txt)
 	mlx->img = malloc(sizeof(t_img *) * 5);
 	while (i < 5)
 		mlx->img[i++] = NULL;
-	if ((mlx->img[0] = ft_init_txt_next(mlx, txt->west)) == NULL
-		|| (mlx->img[1] = ft_init_txt_next(mlx, txt->east)) == NULL
-		|| (mlx->img[2] = ft_init_txt_next(mlx, txt->north)) == NULL
-		|| (mlx->img[3] = ft_init_txt_next(mlx, txt->south)) == NULL
-		|| (mlx->img[4] = ft_init_txt_next(mlx, txt->str)) == NULL)
+	if ((mlx->img[0] = ft_init_txt_next(mlx, txt->north)) == NULL
+		|| (mlx->img[1] = ft_init_txt_next(mlx, txt->south)) == NULL
+		|| (mlx->img[2] = ft_init_txt_next(mlx, txt->west)) == NULL
+		|| (mlx->img[3] = ft_init_txt_next(mlx, txt->east)) == NULL
+		|| (mlx->img[4] = ft_init_txt_next(mlx, txt->spr)) == NULL)
 	{
 		i = 0;
 		while (i < 5 && mlx->img[i] != NULL)
